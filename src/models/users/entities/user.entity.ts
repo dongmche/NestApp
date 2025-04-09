@@ -1,19 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
+import { Entity, ObjectIdColumn, Column, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { ObjectId } from 'mongodb';
 
 @Entity()
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  id: ObjectId;
 
   @Column()
   name: string;
 
-  @Column({ unique: true, nullable : false })
+  @Column({ unique: true, nullable: false })
   email: string;
 
   @Column({ nullable: false })
-  role?: string;
+  role: string;
 
   @Column()
   password: string;
@@ -23,6 +24,7 @@ export class UserEntity {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
 }
+
+
 

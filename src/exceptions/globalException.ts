@@ -34,7 +34,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     // Handle TypeORM specific errors (like QueryFailedError)
     if (exception instanceof QueryFailedError) {
       // Handle duplicate key error (MySQL, PostgreSQL)
-      if (exception.driverError.code === 'ER_DUP_ENTRY' || exception.driverError.code === '23505') {
+      if (
+        exception.driverError.code === 'ER_DUP_ENTRY' ||
+        exception.driverError.code === '23505'
+      ) {
         status = HttpStatus.CONFLICT;
         message = 'Duplicate entry: Resource already exists';
       } else {
@@ -45,7 +48,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     if (exception instanceof BadRequestException) {
       status = HttpStatus.BAD_REQUEST;
-      
+
       // Extracting error message from the BadRequestException
       const response = exception.getResponse();
       if (typeof response === 'object' && response.hasOwnProperty('message')) {
@@ -57,7 +60,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       // Format the message in a user-friendly way
       message = Array.isArray(message) ? message.join(', ') : message;
     }
-
 
     // Catch any other unhandled errors
     response.status(status).json({

@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-// import { LocalAuthGuard } from 'src/auth/auth.guard';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -20,21 +28,10 @@ export class UsersController {
   }
 
 
-  @UseGuards(JwtAuthGuard)
-  @Get('test')
-  test() {
-    return "test success";
-  }
-  
-  @Get('unprotected')
-  testUnProtected() {
-    return "test success";
-  }
-
-
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    console.log(id);
+    return this.usersService.findOne(id);
   }
 
   @Get('getByName/:name')
@@ -42,17 +39,15 @@ export class UsersController {
     if (!name) {
       throw new BadRequestException('Name parameter is required');
     }
-    
+
     const user = await this.usersService.getByName(name);
-    
+
     if (!user) {
       throw new NotFoundException(`User with name ${name} not found`);
     }
-  
+
     return user;
   }
-  
-
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -63,6 +58,4 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
-  
- 
 }
