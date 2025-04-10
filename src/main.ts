@@ -19,7 +19,7 @@ async function bootstrap(): Promise<void> {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document); // Swagger UI will be available at /api
+  SwaggerModule.setup('swagger', app, document); // Swagger UI will be available at /swagger
 
   await app.listen(process.env.PORT ?? 3001);
 }

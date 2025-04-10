@@ -1,7 +1,7 @@
-import { CommonDto } from '../../../common/dto/common.dto';
+import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
 import { IsArray, IsOptional, IsString } from 'class-validator';
 
-export class CreateGalleryDto extends CommonDto {
+export class CreateGalleryDto extends CommonCreateOrUpdateDto {
   @IsString()
   title: string;
 

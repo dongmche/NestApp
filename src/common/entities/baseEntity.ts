@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 import { ObjectId } from 'mongodb';
 
-export abstract class CommonEntity {
+export abstract class BaseEntity {
   @ObjectIdColumn()
   _id: ObjectId;
 

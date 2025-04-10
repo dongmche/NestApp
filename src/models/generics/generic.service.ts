@@ -1,22 +1,37 @@
 // generic.service.ts
 
-import { CommonDto } from '../../common/dto/common.dto';
-import { DeepPartial, DeleteResult, ObjectLiteral, Repository } from 'typeorm';
+import { CommonCreateOrUpdateDto } from '../../common/dto/commonCreateOrUpdateDto';
+import { DeepPartial, DeleteResult, Repository } from 'typeorm';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { IMapper } from './mapper';
 import { ObjectId } from 'mongodb';
 import { RuntimeException } from '@nestjs/core/errors/exceptions';
+import { CommonResponseDto } from '../../common/dto/common.response.dto';
+import { UserContext } from '../../common/types/UserContext';
+import { BaseEntity } from '../../common/entities/baseEntity';
 
-export class GenericService<T extends ObjectLiteral> {
+export class GenericService<
+  Entity extends BaseEntity,
+  ResponseDto extends CommonResponseDto,
+  ReqDto extends CommonCreateOrUpdateDto,
+  UpdatoDto extends CommonCreateOrUpdateDto
+> {
   constructor(
-    protected readonly repository: Repository<T>,
-    protected readonly mapper: IMapper<T, CommonDto>,
+    protected readonly repository: Repository<Entity>,
+    protected readonly mapper: IMapper<Entity, ResponseDto, ReqDto>,
   ) {}
 
-  async create(data: DeepPartial<T>): Promise<CommonDto> {
+  async create(data: ReqDto, user?: UserContext): Promise<ResponseDto> {
     try {
-      const entity: T = this.repository.create(data);
-      const savedEntity: T = await this.repository.save(entity);
+      const dataEntity: Partial<Entity> = this.mapper.toEntity(data);
+      const entity: Entity = this.repository.create(
+        dataEntity as DeepPartial<Entity>,
+      );
+
+      if (user != null) {
+        entity.updaterId = user?.username;
+      }
+      const savedEntity: Entity = await this.repository.save(entity);
       return this.mapper.toDto(savedEntity); // or use your DTO mapping here
     } catch (error) {
       if (error.code === 11000 || error.code === 'ER_DUP_ENTRY') {
@@ -30,11 +45,11 @@ export class GenericService<T extends ObjectLiteral> {
     }
   }
 
-  async findAll(): Promise<CommonDto[]> {
+  async findAll(): Promise<ResponseDto[]> {
     return (await this.repository.find()).map(this.mapper.toDto);
   }
 
-  async findOne(id: string): Promise<CommonDto> {
+  async findOne(id: string): Promise<ResponseDto> {
     try {
       // Validate and convert ID
       let objectId: ObjectId;
@@ -72,21 +87,30 @@ export class GenericService<T extends ObjectLiteral> {
 
   async update(
     id: string,
-    updateDto: Partial<CommonDto>, // Use your Update DTO type here
-  ): Promise<CommonDto> {
+    updateDto: UpdatoDto, // Use your Update DTO type here
+    user?: UserContext,
+  ): Promise<ResponseDto> {
     // Return your Response DTO type
     try {
       const objectId = new ObjectId(id);
-      const existingTab: T | null = await this.repository.findOne({
+      const existingTab: Entity | null = await this.repository.findOne({
         where: { _id: objectId } as any,
       });
 
       if (!existingTab) {
-        throw new NotFoundException(`AboutUsTab with ID ${id} not found`);
+        throw new NotFoundException(`Item with ID ${id} not found`);
       }
 
-      // Update the entity
-      await this.repository.update({ _id: objectId } as any, updateDto);
+      const updated = this.repository.create({
+        ...existingTab,
+        ...updateDto,
+      });
+
+      if (user) {
+        updated.updaterId = user.username;
+      }
+
+      await this.repository.save(updated);
 
       // Retrieve the updated entity
       return await this.findOne(id);
@@ -103,7 +127,7 @@ export class GenericService<T extends ObjectLiteral> {
     throw new RuntimeException();
   }
 
-  async remove(id: string): Promise<{ message: string }> {
+  async remove(id: string, user?: UserContext): Promise<{ message: string }> {
     try {
       // For MongoDB - convert string ID to ObjectId
       const objectId = new ObjectId(id);
@@ -112,9 +136,6 @@ export class GenericService<T extends ObjectLiteral> {
       const result: DeleteResult = await this.repository.delete({
         _id: objectId,
       } as any);
-
-      // For non-MongoDB databases, you can use:
-      // const result = await this.repository.delete(id);
 
       if (result.affected === 0) {
         throw new NotFoundException(`Entity with id ${id} not found`);

@@ -1,7 +1,7 @@
-import { CommonDto } from '../../../common/dto/common.dto';
+import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
 import { IsArray, IsOptional, IsString } from 'class-validator';
 
-export class UpdateGalleryDto extends CommonDto {
+export class UpdateGalleryDto extends CommonCreateOrUpdateDto {
   @IsString() // Validates each element in the array
   title?: string;
 

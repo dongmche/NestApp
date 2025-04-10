@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { CommonEntity } from '../../../common/entities/common.entity';
+import { BaseEntity } from '../../../common/entities/baseEntity';
 
 @Entity('aboutUsTab')
-export class AboutUsTabEntity extends CommonEntity {
+export class AboutUsTabEntity extends BaseEntity {
   @Column()
   geoValue: string;
 

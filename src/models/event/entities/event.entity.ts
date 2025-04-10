@@ -1,8 +1,8 @@
 import { Entity, Column, Index } from 'typeorm';
-import { CommonEntity } from 'src/common/entities/common.entity';
+import { BaseEntity } from 'src/common/entities/baseEntity';
 
 @Entity('event')
-export class EventEntity extends CommonEntity {
+export class EventEntity extends BaseEntity {
   @Index({ unique: true })
   @Column()
   title: string;

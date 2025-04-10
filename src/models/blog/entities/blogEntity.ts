@@ -3,15 +3,18 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/baseEntity';
 
 @Entity()
-export class GalleryEntity extends BaseEntity {
+export class BlogEntity extends BaseEntity {
   @Column()
   title: string;
 
   @Column()
-  artists: string;
+  content: string;
 
   @Column()
-  images: string[]; // Array of image URLs or paths
+  image: string;
+
+  @Column()
+  date: Date;
 
   constructor() {
     super();

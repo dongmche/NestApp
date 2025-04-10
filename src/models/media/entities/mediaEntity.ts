@@ -1,9 +1,9 @@
 // gallery.entity.ts
 import { Entity, Column } from 'typeorm';
-import { CommonEntity } from '../../../common/entities/common.entity';
+import { BaseEntity } from '../../../common/entities/baseEntity';
 
 @Entity()
-export class MediaEntity extends CommonEntity {
+export class MediaEntity extends BaseEntity {
   @Column()
   title: string;
 

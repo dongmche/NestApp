@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+// import { CommonResponseDto } from '../../../common/dto/common.response.dto';
 
 export class ResponseAboutUsTabDto {
   public id: ObjectId;
@@ -8,7 +9,6 @@ export class ResponseAboutUsTabDto {
   public engLabel: string;
   public geoDescription: string;
   public engDescription: string;
-
 
   constructor(
     id: ObjectId,

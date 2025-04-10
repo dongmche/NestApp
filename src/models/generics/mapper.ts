@@ -1,4 +1,4 @@
-export interface IMapper<T, D> {
-  toDto(entity: T): D; // Converts Entity → DTO
-  toEntity(dto: D): Partial<T>; // Converts DTO → Entity (partial for creation/update)
+export interface IMapper<Entity, ResponseDto, RequestDto> {
+  toDto(entity: Entity): ResponseDto; // Converts Entity → DTO
+  toEntity(dto: RequestDto): Partial<Entity>; // Converts DTO → Entity (partial for creation/update)
 }

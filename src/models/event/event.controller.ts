@@ -5,11 +5,12 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
+  Delete, UseGuards,
 } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { ResponseEventDto } from './dto/response-event.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('events')
 export class EventController {
@@ -34,6 +35,7 @@ export class EventController {
   async update(@Param('id') id: string, @Body() createEventDto: CreateEventDto) {
     return this.eventService.update(id, createEventDto);
   }
+
 
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<{ message: string }> {

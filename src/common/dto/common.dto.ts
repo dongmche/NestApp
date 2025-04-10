@@ -1,1 +1,5 @@
-export abstract class CommonDto {}
+import { ObjectId } from 'mongodb';
+
+export abstract class CommonDto {
+
+}

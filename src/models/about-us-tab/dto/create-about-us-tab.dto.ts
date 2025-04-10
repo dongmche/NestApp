@@ -1,6 +1,7 @@
 import { IsString } from 'class-validator';
+import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
 
-export class CreateAboutUsTabDto {
+export class CreateAboutUsTabDto extends CommonCreateOrUpdateDto{
   @IsString()
   geoValue: string;
 

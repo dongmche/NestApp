@@ -1,8 +1,8 @@
-import { CommonDto } from '../../../common/dto/common.dto';
+import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
 import { IsArray, IsDate, IsOptional, IsString } from 'class-validator';
 import { Column } from 'typeorm';
 
-export class UpdateMediaDto extends CommonDto {
+export class UpdateMediaDto extends CommonCreateOrUpdateDto {
   @IsString()
   title?: string;
 
