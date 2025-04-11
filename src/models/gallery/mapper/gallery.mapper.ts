@@ -16,8 +16,8 @@ export class GalleryMapper
 
   toEntity(dto: CreateGalleryDto): GalleryEntity {
     const galleryEntity = new GalleryEntity();
-    galleryEntity.images = dto.images;
-    galleryEntity.title = dto.title;
+    if (dto.images !== undefined) galleryEntity.images = dto.images;
+    if (dto.title !== undefined) galleryEntity.title = dto.title;
     return galleryEntity;
   }
 }

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './infra/database/database.module';
 
 import { EventModule } from './models/event/event.module';
 import { GalleryModule } from './models/gallery/gallery.module';
@@ -9,6 +9,7 @@ import { UsersModule } from './models/users/usersModule';
 import { BlogModule } from './models/blog/blogModule';
 import { VenueModule } from './models/venue/venueModule';
 import { AboutUsModule } from './models/aboutUsTab/aboutUsModule';
+import { AppStartModule } from './infra/appStartCreateAdminUserModule/appStartModule';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AboutUsModule } from './models/aboutUsTab/aboutUsModule';
     UsersModule,
     BlogModule,
     VenueModule,
+    AppStartModule,
   ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import dataSource from '../../data-source'; // Adjust the path as needed
+import dataSource from '../../../data-source'; // Adjust the path as needed
 
 @Module({
   imports: [

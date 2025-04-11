@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from '../../decorators/user.decorator';
+import { User } from '../../common/decorators/user.decorator';
 import { UserContext } from '../../common/types/UserContext';
 import { CommonCreateOrUpdateDto } from '../../common/dto/commonCreateOrUpdateDto';
 

@@ -4,9 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { IMapper } from '../../generics/mapper';
 import { MediaEntity } from '../entities/mediaEntity';
 import { CreateMediaDto } from '../dto/create-media.dto';
-import { UpdateMediaDto } from '../dto/update-media.dto';
 import { ResponseMediaDto } from '../dto/response-media.dto';
-import { BlogEntity } from '../../blog/entities/blogEntity';
 
 @Injectable()
 export class MediaMapper
