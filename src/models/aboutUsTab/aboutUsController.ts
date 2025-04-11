@@ -13,7 +13,7 @@ export class AboutUsController extends GenericController<
   UpdateAboutUsDto,
   ResponseAboutUsDto
 > {
-  constructor(protected readonly galleryService: AboutUsService) {
-    super(galleryService); // Pass the service instance to parent
+  constructor(protected readonly aboutUsService: AboutUsService) {
+    super(aboutUsService); // Pass the service instance to parent
   }
 }

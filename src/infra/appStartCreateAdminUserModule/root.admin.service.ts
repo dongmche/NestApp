@@ -35,7 +35,7 @@ export class RootAdminService implements OnModuleInit {
       this.logger.log('Admin user created successfully.');
     } catch (error) {
       this.logger.warn(
-        'most likely admin user already exists, So admin user is not created',
+        'most likely admin user already exists, so it was not created again.',
       );
     }
   }
