@@ -1,7 +1,8 @@
 import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
+import { ObjectId } from 'mongodb';
 
 export class ResponseMediaDto extends CommonCreateOrUpdateDto {
-  _id: string;
+  id: ObjectId;
 
   title: string;
 

@@ -13,7 +13,6 @@ export class CreateMediaDto extends CommonCreateOrUpdateDto {
   image: string;
 
   @IsDate()
-  @Column({ type: 'date' }) // 👈 explicitly set to 'date'
   date: Date;
 
   @IsString()
