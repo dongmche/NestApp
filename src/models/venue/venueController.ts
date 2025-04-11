@@ -14,7 +14,6 @@ export class VenueController extends GenericController<
   ResponseVenueDto
 > {
   constructor(protected readonly venueService: VenueService) {
-    // Changed variable name to blogService
     super(venueService); // Pass the service instance to parent
   }
 }

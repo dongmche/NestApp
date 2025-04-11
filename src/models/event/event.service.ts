@@ -1,6 +1,4 @@
-import {
-  Injectable,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventEntity } from './entities/event.entity';
@@ -23,6 +21,6 @@ export class EventService extends GenericService<
     protected readonly repository: Repository<EventEntity>,
     protected readonly mapper: EventMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'event');
   }
 }

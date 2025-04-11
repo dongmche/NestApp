@@ -20,6 +20,6 @@ export class MediaService extends GenericService<
     protected readonly repository: Repository<MediaEntity>,
     protected readonly mapper: MediaMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'media');
   }
 }

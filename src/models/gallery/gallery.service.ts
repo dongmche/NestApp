@@ -20,6 +20,6 @@ export class GalleryService extends GenericService<
     protected readonly repository: Repository<GalleryEntity>,
     protected readonly mapper: GalleryMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'gallery');
   }
 }

@@ -20,6 +20,6 @@ export class AboutUsService extends GenericService<
     protected readonly repository: Repository<AboutUsTabentity>,
     protected readonly mapper: AboutUsMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, "aboutUs");
   }
 }

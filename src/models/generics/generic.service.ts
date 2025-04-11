@@ -14,11 +14,12 @@ export class GenericService<
   Entity extends BaseEntity,
   ResponseDto extends CommonResponseDto,
   ReqDto extends CommonCreateOrUpdateDto,
-  UpdatoDto extends CommonCreateOrUpdateDto
+  UpdatoDto extends CommonCreateOrUpdateDto,
 > {
   constructor(
     protected readonly repository: Repository<Entity>,
     protected readonly mapper: IMapper<Entity, ResponseDto, ReqDto>,
+    protected readonly entityName: string = 'entity',
   ) {}
 
   async create(data: ReqDto, user?: UserContext): Promise<ResponseDto> {
@@ -36,7 +37,7 @@ export class GenericService<
     } catch (error) {
       if (error.code === 11000 || error.code === 'ER_DUP_ENTRY') {
         throw new BadRequestException(
-          'Duplicate key error: Entity with the given unique field already exists',
+          `Duplicate key error: ${this.entityName} with the given unique field already exists`,
         );
       }
       throw new BadRequestException(
@@ -65,7 +66,9 @@ export class GenericService<
       });
 
       if (!entity) {
-        throw new NotFoundException(`Entity with ID ${id} not found`);
+        throw new NotFoundException(
+          `${this.entityName} with ID ${id} not found`,
+        );
       }
 
       // Ensure mapper is properly typed
@@ -80,7 +83,7 @@ export class GenericService<
       }
 
       throw new BadRequestException(
-        error.message || `Error retrieving entity with ID ${id}`,
+        error.message || `Error retrieving ${this.entityName} with ID `,
       );
     }
   }
@@ -98,7 +101,9 @@ export class GenericService<
       });
 
       if (!existingTab) {
-        throw new NotFoundException(`Item with ID ${id} not found`);
+        throw new NotFoundException(
+          `${this.entityName} with ID ${id} not found`,
+        );
       }
 
       const updated = this.repository.create({
@@ -120,7 +125,7 @@ export class GenericService<
       }
 
       throw new BadRequestException(
-        error.message || `Failed to update entity with ID: ${id}`,
+        error.message || `Failed to update ${this.entityName} with ID: ${id}`,
       );
     }
 
@@ -138,11 +143,11 @@ export class GenericService<
       } as any);
 
       if (result.affected === 0) {
-        throw new NotFoundException(`Entity with id ${id} not found`);
+        throw new NotFoundException(`${this.entityName}  with id ${id} not found`);
       }
 
       return {
-        message: `Entity with id ${id} successfully deleted`,
+        message: `${this.entityName} with id ${id} successfully deleted`,
       };
     } catch (error) {
       // Handle specific error cases
@@ -155,7 +160,7 @@ export class GenericService<
       }
 
       throw new BadRequestException(
-        error.message || `Failed to delete entity with ID: ${id}`,
+        error.message || `Failed to delete ${this.entityName} with ID: ${id}`,
       );
     }
   }

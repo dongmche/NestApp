@@ -20,6 +20,6 @@ export class BlogService extends GenericService<
     protected readonly repository: Repository<BlogEntity>,
     protected readonly mapper: BlogMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'blog');
   }
 }

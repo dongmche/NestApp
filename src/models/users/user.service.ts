@@ -21,7 +21,7 @@ export class UserService extends GenericService<
     protected readonly repository: Repository<UserEntity>,
     protected readonly mapper: UserMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'user');
   }
 
   async authenticateUser(

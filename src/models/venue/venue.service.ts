@@ -8,7 +8,6 @@ import { ResponseVenueDto } from './dto/response-venue.dto';
 import { CreateVenueDto } from './dto/create-venue.dto';
 import { UpdateVenueDto } from './dto/update-venue.dto';
 
-
 @Injectable()
 export class VenueService extends GenericService<
   VenueEntity,
@@ -21,6 +20,6 @@ export class VenueService extends GenericService<
     protected readonly repository: Repository<VenueEntity>,
     protected readonly mapper: VenueMapper,
   ) {
-    super(repository, mapper);
+    super(repository, mapper, 'venue');
   }
 }
