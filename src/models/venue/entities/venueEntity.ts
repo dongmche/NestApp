@@ -3,18 +3,21 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/baseEntity';
 
 @Entity()
-export class BlogEntity extends BaseEntity {
-  @Column()
-  title: string;
-
-  @Column()
-  content: string;
-
+export class VenueEntity extends BaseEntity {
   @Column()
   image: string;
 
-  @Column({ type: 'date' })
-  date: Date;
+  @Column()
+  geoTitle: string;
+
+  @Column()
+  engTitle: string;
+
+  @Column()
+  geoDescription: string;
+
+  @Column()
+  engDescription: string;
 
   constructor() {
     super();

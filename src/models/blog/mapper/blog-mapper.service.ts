@@ -1,4 +1,4 @@
-// gallery.mapper.ts
+// aboutUsTab.mapper.ts
 
 import { Injectable } from '@nestjs/common';
 import { IMapper } from '../../generics/mapper';

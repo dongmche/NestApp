@@ -1,44 +1,20 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete, UseGuards,
-} from '@nestjs/common';
-import { EventService } from './event.service';
+import { Controller } from '@nestjs/common';
+
+import { EventEntity } from './entities/event.entity';
+import { UpdateEventDto } from './dto/update-event.dto';
 import { CreateEventDto } from './dto/create-event.dto';
 import { ResponseEventDto } from './dto/response-event.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { GenericController } from '../generics/generic.controller';
+import { EventService } from './event.service';
 
 @Controller('events')
-export class EventController {
-  constructor(private readonly eventService: EventService) {}
-
-  @Post()
-  async create(@Body() createEventDto: CreateEventDto): Promise<ResponseEventDto> {
-    return this.eventService.create(createEventDto);
-  }
-
-  @Get()
-  async findAll(): Promise<ResponseEventDto[]> {
-    return this.eventService.findAll();
-  }
-
-  @Get(':id')
-  async indOne(@Param('id') id: string): Promise<ResponseEventDto> {
-    return this.eventService.findOne(id);
-  }
-
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() createEventDto: CreateEventDto) {
-    return this.eventService.update(id, createEventDto);
-  }
-
-
-  @Delete(':id')
-  async remove(@Param('id') id: string): Promise<{ message: string }> {
-    return this.eventService.remove(id);
+export class EventController extends GenericController<
+  EventEntity,
+  CreateEventDto,
+  UpdateEventDto,
+  ResponseEventDto
+> {
+  constructor(protected readonly eventService: EventService) {
+    super(eventService); // Pass the service instance to parent
   }
 }

@@ -1,7 +1,8 @@
 import { IsString, IsBoolean, IsDate, IsUrl } from 'class-validator';
 import { Type } from 'class-transformer';
+import { CommonCreateOrUpdateDto } from '../../../common/dto/commonCreateOrUpdateDto';
 
-export class CreateEventDto {
+export class CreateEventDto extends CommonCreateOrUpdateDto{
   @IsString()
   title: string;
 

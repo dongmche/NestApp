@@ -1,13 +1,12 @@
-import { Column, Entity } from 'typeorm';
+// gallery.entity.ts
+import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/baseEntity';
+import { IsString } from 'class-validator';
 
-@Entity('aboutUsTab')
-export class AboutUsTabEntity extends BaseEntity {
+@Entity()
+export class AboutUsTabentity extends BaseEntity {
   @Column()
-  geoValue: string;
-
-  @Column()
-  engValue: string;
+  value: string;
 
   @Column()
   geoLabel: string;
@@ -20,4 +19,8 @@ export class AboutUsTabEntity extends BaseEntity {
 
   @Column()
   engDescription: string;
+
+  constructor() {
+    super();
+  }
 }

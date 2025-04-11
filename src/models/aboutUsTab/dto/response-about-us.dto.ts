@@ -1,10 +1,9 @@
+import { CommonResponseDto } from '../../../common/dto/common.response.dto';
 import { ObjectId } from 'mongodb';
-// import { CommonResponseDto } from '../../../common/dto/common.response.dto';
+import { IsString } from 'class-validator';
 
-export class ResponseAboutUsTabDto {
-  public id: ObjectId;
-  public geoValue: string;
-  public engValue: string;
+export class ResponseAboutUsDto extends CommonResponseDto {
+  public value: string;
   public geoLabel: string;
   public engLabel: string;
   public geoDescription: string;
@@ -12,16 +11,14 @@ export class ResponseAboutUsTabDto {
 
   constructor(
     id: ObjectId,
-    geoValue: string,
-    engValue: string,
+    value: string,
     geoLabel: string,
     engLabel: string,
     geoDescription: string,
     engDescription: string,
   ) {
-    this.id = id;
-    this.geoValue = geoValue;
-    this.engValue = engValue;
+    super(id);
+    this.value = value;
     this.geoLabel = geoLabel;
     this.engLabel = engLabel;
     this.geoDescription = geoDescription;

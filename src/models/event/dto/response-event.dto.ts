@@ -1,4 +1,7 @@
-export class ResponseEventDto {
+import { CommonResponseDto } from '../../../common/dto/common.response.dto';
+import { ObjectId } from 'mongodb';
+
+export class ResponseEventDto extends CommonResponseDto{
   public title: string;
   public description: string;
   public url: string;
@@ -10,6 +13,7 @@ export class ResponseEventDto {
   public isAvailable: boolean;
 
   constructor(
+    id: ObjectId,
     title: string,
     description: string,
     url: string,
@@ -20,6 +24,7 @@ export class ResponseEventDto {
     isFeatured: boolean,
     isAvailable: boolean,
   ) {
+    super(id);
     this.title = title;
     this.description = description;
     this.url = url;

@@ -14,7 +14,6 @@ export class BlogController extends GenericController<
   ResponseBlogDto
 > {
   constructor(protected readonly blogService: BlogService) {
-    // Changed variable name to blogService
     super(blogService); // Pass the service instance to parent
   }
 }

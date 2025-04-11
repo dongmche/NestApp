@@ -1,4 +1,4 @@
-// gallery.mapper.ts
+// aboutUsTab.mapper.ts
 
 import { Injectable } from '@nestjs/common';
 import { IMapper } from '../../generics/mapper';
@@ -8,7 +8,9 @@ import { UpdateMediaDto } from '../dto/update-media.dto';
 import { ResponseMediaDto } from '../dto/response-media.dto';
 
 @Injectable()
-export class MediaMapper implements IMapper<MediaEntity, ResponseMediaDto, CreateMediaDto> {
+export class MediaMapper
+  implements IMapper<MediaEntity, ResponseMediaDto, CreateMediaDto>
+{
   toDto(entity: MediaEntity): ResponseMediaDto {
     const dto = new ResponseMediaDto();
     dto._id = entity._id.toHexString();
