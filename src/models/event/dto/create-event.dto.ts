@@ -10,7 +10,11 @@ export class CreateEventDto extends CommonCreateOrUpdateDto{
 
   @ApiProperty()
   @IsString()
-  description: string;
+  geoDescription: string;
+
+  @ApiProperty()
+  @IsString()
+  engDescription: string;
 
   @ApiProperty()
   @IsUrl()

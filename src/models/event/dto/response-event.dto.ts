@@ -6,7 +6,9 @@ export class ResponseEventDto extends CommonResponseDto {
   @ApiProperty()
   public title: string;
   @ApiProperty()
-  public description: string;
+  public geoDescription: string;
+  @ApiProperty()
+  public engDescription: string;
   @ApiProperty()
   public url: string;
   @ApiProperty()
@@ -36,7 +38,7 @@ export class ResponseEventDto extends CommonResponseDto {
   ) {
     super(id);
     this.title = title;
-    this.description = description;
+    this.geoDescription = description;
     this.url = url;
     this.img = img;
     this.date = date;

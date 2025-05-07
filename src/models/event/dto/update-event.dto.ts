@@ -10,7 +10,11 @@ export class UpdateEventDto extends CommonCreateOrUpdateDto {
 
   @ApiProperty({ required: false })
   @IsString()
-  description?: string;
+  geoDescription?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  engDescription?: string;
 
   @ApiProperty({ required: false })
   @IsUrl()

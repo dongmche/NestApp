@@ -8,7 +8,10 @@ export class EventEntity extends BaseEntity {
   title: string;
 
   @Column()
-  description: string;
+  geoDescription: string;
+
+  @Column()
+  engDescription: string;
 
   @Column()
   url: string;

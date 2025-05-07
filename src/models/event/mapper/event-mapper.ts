@@ -13,7 +13,8 @@ export class EventMapper
     return {
       id: entity._id,
       title: entity.title,
-      description: entity.description,
+      geoDescription: entity.geoDescription,
+      engDescription: entity.engDescription,
       url: entity.url,
       img: entity.img,
       date: entity.date,
@@ -28,7 +29,10 @@ export class EventMapper
     const entity = new EventEntity();
 
     if (dto.title !== undefined) entity.title = dto.title;
-    if (dto.description !== undefined) entity.description = dto.description;
+    if (dto.geoDescription !== undefined)
+      entity.geoDescription = dto.geoDescription;
+    if (dto.engDescription !== undefined)
+      entity.engDescription = dto.engDescription;
     if (dto.url !== undefined) entity.url = dto.url;
     if (dto.img !== undefined) entity.img = dto.img;
     if (dto.date !== undefined) entity.date = dto.date;
