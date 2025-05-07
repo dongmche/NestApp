@@ -28,7 +28,7 @@ import { UserContext } from '../../common/types/UserContext';
 export class GalleryController {
   constructor(private readonly galleryService: GalleryService) {}
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Create a new gallery item' })
   @ApiBody({ type: CreateGalleryDto })
   @ApiResponse({ status: 201, type: ResponseGalleryDto })
@@ -56,7 +56,7 @@ export class GalleryController {
   }
 
   @ApiOperation({ summary: 'Update a gallery item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateGalleryDto })
   @ApiResponse({ status: 200, type: ResponseGalleryDto })
   @UseGuards(AuthGuard('jwt'))
@@ -70,7 +70,7 @@ export class GalleryController {
   }
 
   @ApiOperation({ summary: 'Delete a gallery item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

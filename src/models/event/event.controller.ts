@@ -30,7 +30,7 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @ApiOperation({ summary: 'Create a new event item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: CreateEventDto })
   @ApiResponse({ status: 201, type: ResponseEventDto })
   @UseGuards(AuthGuard('jwt'))
@@ -57,7 +57,7 @@ export class EventController {
   }
 
   @ApiOperation({ summary: 'Update an event item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateEventDto })
   @ApiResponse({ status: 200, type: ResponseEventDto })
   @UseGuards(AuthGuard('jwt'))
@@ -71,7 +71,7 @@ export class EventController {
   }
 
   @ApiOperation({ summary: 'Delete an event item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

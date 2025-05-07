@@ -29,7 +29,7 @@ export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
   @ApiOperation({ summary: 'Create a new blog item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: CreateBlogDto })
   @ApiResponse({ status: 201, type: ResponseBlogDto })
   @UseGuards(AuthGuard('jwt'))
@@ -56,7 +56,7 @@ export class BlogController {
   }
 
   @ApiOperation({ summary: 'Update a blog item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateBlogDto })
   @ApiResponse({ status: 200, type: ResponseBlogDto })
   @UseGuards(AuthGuard('jwt'))
@@ -70,7 +70,7 @@ export class BlogController {
   }
 
   @ApiOperation({ summary: 'Delete a blog item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

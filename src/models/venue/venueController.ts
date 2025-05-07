@@ -28,7 +28,7 @@ import { UserContext } from '../../common/types/UserContext';
 export class VenueController {
   constructor(private readonly venueService: VenueService) {}
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Create a new venue item' })
   @ApiBody({ type: CreateVenueDto })
   @ApiResponse({ status: 201, type: ResponseVenueDto })
@@ -56,7 +56,7 @@ export class VenueController {
   }
 
   @ApiOperation({ summary: 'Update a venue item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateVenueDto })
   @ApiResponse({ status: 200, type: ResponseVenueDto })
   @UseGuards(AuthGuard('jwt'))
@@ -70,7 +70,7 @@ export class VenueController {
   }
 
   @ApiOperation({ summary: 'Delete a venue item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

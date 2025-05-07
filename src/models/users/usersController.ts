@@ -32,7 +32,7 @@ export class UsersController {
     private readonly configService: ConfigService,
   ) {}
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({ type: CreateUserDto })
   @ApiResponse({ status: 201, type: ResponseUserDto })
@@ -48,7 +48,7 @@ export class UsersController {
     return this.userService.create(createDto, usercontext);
   }
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard('jwt'))
   @ApiResponse({ status: 200, type: [ResponseUserDto] })
   @ApiOperation({ summary: 'Get all users' })
@@ -57,7 +57,7 @@ export class UsersController {
     return this.userService.findAll();
   }
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({ summary: 'Get a single user  by ID' })
   @ApiResponse({ status: 200, type: ResponseUserDto })
@@ -67,7 +67,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: 'Update a user' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateUserDto })
   @ApiResponse({ status: 200, type: ResponseUserDto })
   @UseGuards(AuthGuard('jwt'))
@@ -81,7 +81,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: 'Delete a user' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

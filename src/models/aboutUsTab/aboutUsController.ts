@@ -29,7 +29,7 @@ export class AboutUsController {
   constructor(private readonly aboutUsService: AboutUsService) {}
 
   @ApiOperation({ summary: 'Create a new about-us item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: CreateAboutUsDto })
   @ApiResponse({ status: 201, type: ResponseAboutUsDto })
   @UseGuards(AuthGuard('jwt'))
@@ -56,7 +56,7 @@ export class AboutUsController {
   }
 
   @ApiOperation({ summary: 'Update a about-us item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateAboutUsDto })
   @ApiResponse({ status: 200, type: ResponseAboutUsDto })
   @UseGuards(AuthGuard('jwt'))
@@ -70,7 +70,7 @@ export class AboutUsController {
   }
 
   @ApiOperation({ summary: 'Delete a about-us item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')

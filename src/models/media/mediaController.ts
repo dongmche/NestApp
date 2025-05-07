@@ -30,7 +30,7 @@ import { CreateMediaDto } from './dto/create-media.dto';
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Create a new media item' })
   @ApiBody({ type: CreateMediaDto })
   @ApiResponse({ status: 201, type: ResponseMediaDto })
@@ -58,7 +58,7 @@ export class MediaController {
   }
 
   @ApiOperation({ summary: 'Update a media item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: UpdateMediaDto })
   @ApiResponse({ status: 200, type: ResponseMediaDto })
   @UseGuards(AuthGuard('jwt'))
@@ -72,7 +72,7 @@ export class MediaController {
   }
 
   @ApiOperation({ summary: 'Delete a media item' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Successfully deleted' })
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
