@@ -15,6 +15,7 @@ export class GalleryMapper
 
     // it is optional
     if (entity.images !== undefined) dto.images = entity.images;
+    if (entity.artists !== undefined) dto.artists = entity.artists;
 
     return dto;
   }
@@ -27,9 +28,8 @@ export class GalleryMapper
         : [...dto.images]; // or just dto.images if already a new array
     }
 
-    console.log('Gallery entity ');
-    console.log(galleryEntity.images);
 
+    if (dto.artists !== undefined) galleryEntity.artists = dto.artists;
     if (dto.title !== undefined) galleryEntity.title = dto.title;
     return galleryEntity;
   }

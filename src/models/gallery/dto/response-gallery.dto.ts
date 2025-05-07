@@ -8,6 +8,9 @@ export class ResponseGalleryDto extends CommonResponseDto {
   public title: string;
 
   @ApiProperty()
+  public artists: string;
+
+  @ApiProperty()
   public images: ImageItem[];
 
   constructor(id: ObjectId, title: string) {

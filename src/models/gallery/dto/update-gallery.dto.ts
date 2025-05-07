@@ -10,6 +10,11 @@ export class UpdateGalleryDto extends CommonCreateOrUpdateDto {
   @IsString() // Validates each element in the array
   title?: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString() // Validates each element in the array
+  artists?: string;
+
   @ApiProperty({ type: [ImageItem], required: false })
   @IsOptional()
   @ValidateNested({ each: true }) // ✅ validate each item as object

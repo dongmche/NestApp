@@ -15,6 +15,11 @@ export class CreateGalleryDto extends CommonCreateOrUpdateDto {
   @IsNotEmpty({ message: 'Title can not be empty' })
   title: string;
 
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty({ message: 'Artists can not be empty' })
+  artists: string;
+
   @ApiProperty({ type: [ImageItem], required: false })
   @IsOptional()
   @ValidateNested({ each: true }) // ✅ validate each item as object
