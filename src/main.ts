@@ -16,11 +16,20 @@ async function bootstrap(): Promise<void> {
     .setDescription('API documentation for the Event Management System')
     .setVersion('1.0')
     .addTag('events') // Tag for grouping endpoints
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'Authorization',
+        in: 'header',
+      },
+      'access-token', // key name, used in @ApiBearerAuth
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document); // Swagger UI will be available at /swagger
-
 
   await app.listen(process.env.PORT ?? 3001);
 }

@@ -1,11 +1,21 @@
 import { CommonResponseDto } from '../../../common/dto/common.response.dto';
 import { ObjectId } from 'mongodb';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseVenueDto extends CommonResponseDto {
+  @ApiProperty()
   public image: string;
+
+  @ApiProperty()
   public geoTitle: string;
+
+  @ApiProperty()
   public engTitle: string;
+
+  @ApiProperty()
   public geoDescription: string;
+
+  @ApiProperty()
   public engDescription: string;
 
   constructor(

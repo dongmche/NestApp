@@ -5,7 +5,6 @@ import { DeepPartial, DeleteResult, Repository } from 'typeorm';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { IMapper } from './mapper';
 import { ObjectId } from 'mongodb';
-import { RuntimeException } from '@nestjs/core/errors/exceptions';
 import { CommonResponseDto } from '../../common/dto/common.response.dto';
 import { UserContext } from '../../common/types/UserContext';
 import { BaseEntity } from '../../common/entities/baseEntity';
@@ -129,7 +128,7 @@ export class GenericService<
       );
     }
 
-    throw new RuntimeException();
+    // throw new RuntimeException();
   }
 
   async remove(id: string, user?: UserContext): Promise<{ message: string }> {

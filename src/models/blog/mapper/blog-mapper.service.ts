@@ -11,20 +11,16 @@ export class BlogMapper
   implements IMapper<BlogEntity, ResponseBlogDto, CreateBlogDto>
 {
   toDto(entity: BlogEntity): ResponseBlogDto {
-    const dto = new ResponseBlogDto(
+    return new ResponseBlogDto(
       entity._id,
       entity.title,
       entity.content,
       entity.image,
       entity.date,
     );
-    dto.updateDate = entity.updateDate;
-    dto.createDate = entity.createDate;
-
-    return dto;
   }
 
-  toEntity(dto: CreateBlogDto): Partial<BlogEntity> {
+  toEntity(dto: CreateBlogDto): BlogEntity {
     const entity = new BlogEntity();
 
     // Only assign if defined (allows null values)

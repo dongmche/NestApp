@@ -11,19 +11,25 @@ export class GalleryMapper
   implements IMapper<GalleryEntity, ResponseGalleryDto, CreateGalleryDto>
 {
   toDto(entity: GalleryEntity): ResponseGalleryDto {
-    const dto = new ResponseGalleryDto(entity._id);
+    const dto = new ResponseGalleryDto(entity._id, entity.title);
 
+    // it is optional
     if (entity.images !== undefined) dto.images = entity.images;
-    if (entity.title !== undefined) dto.title = entity.title;
-    dto.createDate = entity.createDate;
-    dto.updateDate = entity.updateDate;
 
     return dto;
   }
 
   toEntity(dto: CreateGalleryDto): GalleryEntity {
     const galleryEntity = new GalleryEntity();
-    if (dto.images !== undefined) galleryEntity.images = dto.images;
+    if (dto.images !== undefined) {
+      galleryEntity.images = Array.isArray(galleryEntity.images)
+        ? [...galleryEntity.images, ...dto.images]
+        : [...dto.images]; // or just dto.images if already a new array
+    }
+
+    console.log('Gallery entity ');
+    console.log(galleryEntity.images);
+
     if (dto.title !== undefined) galleryEntity.title = dto.title;
     return galleryEntity;
   }

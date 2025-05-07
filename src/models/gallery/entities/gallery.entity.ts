@@ -1,6 +1,7 @@
 // gallery.entity.ts
 import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/baseEntity';
+import { ImageItem } from '../dto/image-item';
 
 @Entity()
 export class GalleryEntity extends BaseEntity {
@@ -10,8 +11,8 @@ export class GalleryEntity extends BaseEntity {
   @Column()
   artists: string;
 
-  @Column()
-  images: string[]; // Array of image URLs or paths
+  @Column({ type: 'array', default: [] })
+  images: ImageItem[];
 
   constructor() {
     super();

@@ -14,6 +14,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { User } from '../../common/decorators/user.decorator';
 import { UserContext } from '../../common/types/UserContext';
 import { CommonCreateOrUpdateDto } from '../../common/dto/commonCreateOrUpdateDto';
+import { ApiResponse } from '@nestjs/swagger';
+import { ResponseEventDto } from '../event/dto/response-event.dto';
 
 export abstract class GenericController<
   EntityType extends BaseEntity,
@@ -30,6 +32,7 @@ export abstract class GenericController<
     >,
   ) {}
 
+  // @ApiResponse({ status: 201, type :  })
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(
@@ -61,7 +64,10 @@ export abstract class GenericController<
 
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
-  async remove(@Param('id') id: string, @User() usercontext: UserContext):Promise<{message:string}> {
+  async remove(
+    @Param('id') id: string,
+    @User() usercontext: UserContext,
+  ): Promise<{ message: string }> {
     return this.service.remove(id, usercontext);
   }
 }

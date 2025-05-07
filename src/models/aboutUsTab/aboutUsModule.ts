@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AboutUsService } from './about-us.service';
+import { AboutUsService } from './aboutUs.service';
 import { AboutUsController } from './aboutUsController';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AboutUsTabentity } from './entities/aboutUsTabentity';

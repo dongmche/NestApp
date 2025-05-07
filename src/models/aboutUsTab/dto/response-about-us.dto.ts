@@ -1,12 +1,17 @@
 import { CommonResponseDto } from '../../../common/dto/common.response.dto';
 import { ObjectId } from 'mongodb';
-import { IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseAboutUsDto extends CommonResponseDto {
+  @ApiProperty()
   public value: string;
-  public geoLabel: string;
+  @ApiProperty()
   public engLabel: string;
+  @ApiProperty()
+  public geoLabel: string;
+  @ApiProperty()
   public geoDescription: string;
+  @ApiProperty()
   public engDescription: string;
 
   constructor(

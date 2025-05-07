@@ -28,8 +28,10 @@ export class VenueMapper
     if (dto.image !== undefined) entity.image = dto.image;
     if (dto.geoTitle !== undefined) entity.geoTitle = dto.geoTitle;
     if (dto.engTitle !== undefined) entity.engTitle = dto.engTitle;
-    if (dto.geoDescription !== undefined) entity.geoDescription = dto.geoDescription;
-    if (dto.engDescription !== undefined) entity.engDescription = dto.engDescription;
+    if (dto.geoDescription !== undefined)
+      entity.geoDescription = dto.geoDescription;
+    if (dto.engDescription !== undefined)
+      entity.engDescription = dto.engDescription;
 
     return entity;
   }

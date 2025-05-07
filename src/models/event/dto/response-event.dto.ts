@@ -1,15 +1,25 @@
 import { CommonResponseDto } from '../../../common/dto/common.response.dto';
 import { ObjectId } from 'mongodb';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class ResponseEventDto extends CommonResponseDto{
+export class ResponseEventDto extends CommonResponseDto {
+  @ApiProperty()
   public title: string;
+  @ApiProperty()
   public description: string;
+  @ApiProperty()
   public url: string;
+  @ApiProperty()
   public img: string;
+  @ApiProperty()
   public date: Date;
+  @ApiProperty()
   public location: string;
+  @ApiProperty()
   public ticketUrl: string;
+  @ApiProperty()
   public isFeatured: boolean;
+  @ApiProperty()
   public isAvailable: boolean;
 
   constructor(

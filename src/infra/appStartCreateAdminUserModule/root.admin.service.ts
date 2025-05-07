@@ -29,6 +29,10 @@ export class RootAdminService implements OnModuleInit {
       this.configService.get<string>('ADMIN_PASSWORD') || 'admin';
     admin.password = await hashPassword(plainPassword);
 
+    admin.roles = [
+      this.configService.get<string>('SUPERADMIN_ROLE') || 'superAdmin',
+    ];
+
     try {
       const existingAdmin: ResponseUserDto =
         await this.usersService.create(admin);

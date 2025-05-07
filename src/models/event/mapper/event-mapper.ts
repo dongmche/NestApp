@@ -11,6 +11,7 @@ export class EventMapper
 {
   toDto(entity: EventEntity): ResponseEventDto {
     return {
+      id: entity._id,
       title: entity.title,
       description: entity.description,
       url: entity.url,
@@ -23,7 +24,7 @@ export class EventMapper
     };
   }
 
-  toEntity(dto: CreateEventDto): ResponseEventDto {
+  toEntity(dto: CreateEventDto): EventEntity {
     const entity = new EventEntity();
 
     if (dto.title !== undefined) entity.title = dto.title;

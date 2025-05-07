@@ -3,12 +3,12 @@
 import { Injectable } from '@nestjs/common';
 import { IMapper } from '../../generics/mapper';
 import { AboutUsTabentity } from '../entities/aboutUsTabentity';
-import { CreatAboutUsDto } from '../dto/creat-about-us.dto';
+import { CreateAboutUsDto } from '../dto/create-about-us.dto';
 import { ResponseAboutUsDto } from '../dto/response-about-us.dto';
 
 @Injectable()
 export class AboutUsMapper
-  implements IMapper<AboutUsTabentity, ResponseAboutUsDto, CreatAboutUsDto>
+  implements IMapper<AboutUsTabentity, ResponseAboutUsDto, CreateAboutUsDto>
 {
   toDto(entity: AboutUsTabentity): ResponseAboutUsDto {
     return new ResponseAboutUsDto(
@@ -21,7 +21,7 @@ export class AboutUsMapper
     );
   }
 
-  toEntity(dto: CreatAboutUsDto): AboutUsTabentity {
+  toEntity(dto: CreateAboutUsDto): AboutUsTabentity {
     const entity = new AboutUsTabentity();
     entity.value = dto.value;
     entity.geoLabel = dto.geoLabel;
